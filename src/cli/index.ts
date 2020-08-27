@@ -5,8 +5,20 @@ import fs from "fs";
 import { join } from "path";
 import moo from "moo";
 
-import util from "util";
 const { exec } = require("child_process");
+
+const grammar = {
+  WS: /[ \t]+/,
+  comment: /\/\/.*?$/,
+  keyword: ["CMD", "ENV", "CMD"],
+  string: {
+    match: /"(?:\\["\\]|[^\n"\\])*"/,
+    value: (s: string) => s.slice(1, -1),
+  },
+  name: /\w+/,
+};
+
+fs.writeFileSync("grammar.json", JSON.stringify(grammar));
 
 const args = require("yargs").argv;
 const dir = args["_"][0];
@@ -24,20 +36,9 @@ if (!dir) {
 
       const tokens = code
         .map((x) => {
-          return Array.from(
-            moo
-              .compile({
-                WS: /[ \t]+/,
-                comment: /\/\/.*?$/,
-                keyword: ["CMD", "ENV", "CMD"],
-                string: {
-                  match: /"(?:\\["\\]|[^\n"\\])*"/,
-                  value: (s: string) => s.slice(1, -1),
-                },
-                name: /\w+/,
-              })
-              .reset(x)
-          ).filter((x: any) => x.type != "WS");
+          return Array.from(moo.compile(grammar).reset(x)).filter(
+            (x: any) => x.type != "WS"
+          );
         })
         .filter((x) => x[0] != undefined);
 

@@ -8,6 +8,17 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = require("path");
 const moo_1 = __importDefault(require("moo"));
 const { exec } = require("child_process");
+const grammar = {
+    WS: /[ \t]+/,
+    comment: /\/\/.*?$/,
+    keyword: ["CMD", "ENV", "CMD"],
+    string: {
+        match: /"(?:\\["\\]|[^\n"\\])*"/,
+        value: (s) => s.slice(1, -1),
+    },
+    name: /\w+/,
+};
+fs_1.default.writeFileSync("grammar.json", JSON.stringify(grammar));
 const args = require("yargs").argv;
 const dir = args["_"][0];
 if (!dir) {
@@ -20,18 +31,7 @@ else {
         const code = data.split("\r\n");
         const tokens = code
             .map((x) => {
-            return Array.from(moo_1.default
-                .compile({
-                WS: /[ \t]+/,
-                comment: /\/\/.*?$/,
-                keyword: ["CMD", "ENV", "CMD"],
-                string: {
-                    match: /"(?:\\["\\]|[^\n"\\])*"/,
-                    value: (s) => s.slice(1, -1),
-                },
-                name: /\w+/,
-            })
-                .reset(x)).filter((x) => x.type != "WS");
+            return Array.from(moo_1.default.compile(grammar).reset(x)).filter((x) => x.type != "WS");
         })
             .filter((x) => x[0] != undefined);
         var line;
@@ -42,7 +42,7 @@ else {
                 if (!!line[1] && line[1].value) {
                     await exec(line[1].value, {
                         cwd: path_1.join(process.cwd(), dir),
-                        env: { ...process.env, ...envs },
+                        env: { ...envs, ...process.env },
                     }, (err, stdout, stderr) => {
                         if (stderr)
                             console.log(stderr);
@@ -60,6 +60,5 @@ else {
                 }
             }
         }
-        console.log({ ...process.env, ...envs });
     });
 }

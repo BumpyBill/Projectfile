@@ -1,0 +1,40 @@
+{
+  "name": "projectfile",
+  "icon": "icon.png",
+  "publisher": "bumpy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BumpyBill/Projectfile"
+  },
+  "displayName": "Projectfile",
+  "description": "Run Node Projects Locally With Ease",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.48.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "Projectfile",
+        "aliases": [
+          "Projectfile",
+          "Projectfile"
+        ],
+        "extensions": [
+          "Projectfile"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "Projectfile",
+        "scopeName": "source.Projectfile",
+        "path": "./syntaxes/Projectfile.tmLanguage.json"
+      }
+    ]
+  }
+}
