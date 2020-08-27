@@ -24,7 +24,15 @@ npm i projectfile --g
 npm i projectfile --save-dev
 ```
 
-### Projectfile
+---
+
+### VSCode Support
+
+Click [here](https://marketplace.visualstudio.com/items?itemName=bumpy.projectfile) to download the VSCode extension that provides Syntax Highlighting and a file icon
+
+---
+
+### Documentation
 
 ##### Environment Variables
 
