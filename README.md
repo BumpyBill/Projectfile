@@ -6,7 +6,11 @@ Run Node Projects Locally With Ease
 
 ### Usage
 
-#### Installation
+```bash
+projectfile <dir>
+```
+
+### Installation
 
 > Installing Projectfile globally
 
@@ -18,4 +22,18 @@ npm i projectfile --g
 
 ```bash
 npm i projectfile --save-dev
+```
+
+### Projectfile
+
+##### Environment Variables
+
+```dockerfile
+ENV <name> <value>
+```
+
+##### Environment Variables
+
+```dockerfile
+CMD <string>
 ```
