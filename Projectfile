@@ -1,0 +1,3 @@
+ENV aaahahaha "helloWorld"
+
+CMD "echo OMGGG"

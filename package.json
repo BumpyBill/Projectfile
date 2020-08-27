@@ -1,0 +1,33 @@
+{
+  "name": "projectfile",
+  "version": "0.0.11",
+  "description": "Run Node Projects Locally With Ease",
+  "keywords": [
+    "docker",
+    "npm",
+    "node"
+  ],
+  "author": "Bumpy",
+  "license": "Apache License 2.0",
+  "bin": {
+    "projectfile": "dist/cli/index.js"
+  },
+  "dependencies": {
+    "moo": "^0.5.1",
+    "yargs": "^15.4.1"
+  },
+  "scripts": {
+    "start": "npm run build && projectfile .",
+    "build": "tsc -p ."
+  },
+  "devDependencies": {
+    "@types/moo": "^0.5.3",
+    "@types/node": "^14.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BumpyBill/Projectfile"
+  },
+  "bugs": "https://github.com/BumpyBill/Projectfile/issues",
+  "homepage": "https://github.com/BumpyBill/Projectfile#readme"
+}
