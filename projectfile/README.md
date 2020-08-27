@@ -1,6 +1,6 @@
 ## Projectfile
 
-Run Node Projects Locally With Ease
+Run Projects Locally With Ease
 
 ---
 

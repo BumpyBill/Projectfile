@@ -1,7 +1,7 @@
 {
   "name": "projectfile",
   "version": "0.0.12",
-  "description": "Run Node Projects Locally With Ease",
+  "description": "Run Projects Locally With Ease",
   "keywords": [
     "docker",
     "npm",
