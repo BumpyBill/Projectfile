@@ -1,6 +1,13 @@
 {
   "name": "projectfile",
   "icon": "icon.png",
+  "iconThemes": [
+    {
+      "id": "projectfile",
+      "label": "Projectfile",
+      "path": "icon.json"
+    }
+  ],
   "publisher": "bumpy",
   "repository": {
     "type": "git",
