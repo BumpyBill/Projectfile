@@ -1,6 +1,6 @@
 {
   "name": "projectfile",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Run Node Projects Locally With Ease",
   "keywords": [
     "docker",
@@ -29,5 +29,5 @@
     "url": "https://github.com/BumpyBill/Projectfile"
   },
   "bugs": "https://github.com/BumpyBill/Projectfile/issues",
-  "homepage": "https://github.com/BumpyBill/Projectfile#readme"
+  "homepage": "https://github.com/BumpyBill/Projectfile"
 }
