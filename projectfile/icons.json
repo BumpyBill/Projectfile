@@ -1,0 +1,11 @@
+{
+  "iconDefinitions": {
+    "_projectfile": {
+      "iconPath": "icon.png"
+    }
+  },
+
+  "fileNames": {
+    "Projectfile": "_projectfile"
+  }
+}
