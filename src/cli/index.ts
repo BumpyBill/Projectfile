@@ -5,20 +5,18 @@ import fs from "fs";
 import { join } from "path";
 import moo from "moo";
 
-const { exec } = require("child_process");
+import { spawn } from "child_process";
 
 const grammar = {
   WS: /[ \t]+/,
   comment: /\/\/.*?$/,
-  keyword: ["CMD", "ENV", "CMD"],
+  keyword: ["CMD", "ENV", "RUN"],
   string: {
     match: /"(?:\\["\\]|[^\n"\\])*"/,
     value: (s: string) => s.slice(1, -1),
   },
   name: /\w+/,
 };
-
-fs.writeFileSync("grammar.json", JSON.stringify(grammar));
 
 const args = require("yargs").argv;
 const dir = args["_"][0];
@@ -45,20 +43,34 @@ if (!dir) {
       var line: any;
       var envs: any = {};
       for (line of tokens) {
+        line = line.filter((x: any) => x.type != "comment");
         // CMD
         if (!!line[0] && line[0].type == "keyword" && line[0].text == "CMD") {
           if (!!line[1] && line[1].value) {
-            await exec(
-              line[1].value,
+            console.log(args.detached);
+            const cmd = spawn(
+              line[1].value.split(/ +/)[0],
+              line[1].value
+                .split(/ +/)
+                .slice(1, line[1].value.split(/ +/).length),
               {
                 cwd: join(process.cwd(), dir),
                 env: { ...envs, ...process.env },
-              },
-              (err: any, stdout: any, stderr: any) => {
-                if (stderr) console.log(stderr);
-                if (!!stdout[0]) console.log(stdout);
+                shell: true,
+                detached: args.detached ? args.detached : false,
               }
             );
+            cmd.stdout.on("data", (data) => {
+              console.log(data.toString());
+            });
+
+            cmd.stderr.on("data", (data: Error) => {
+              throw data.toString();
+            });
+
+            cmd.on("close", (code) => {
+              console.log(`Child Process Exited With Code ${code}`);
+            });
           }
         }
 

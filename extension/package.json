@@ -2,20 +2,13 @@
   "name": "projectfile",
   "icon": "icon.png",
   "publisher": "bumpy",
-  "iconThemes": [
-    {
-      "id": "projectfile",
-      "label": "Projectfile",
-      "path": "icons.json"
-    }
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/BumpyBill/Projectfile"
   },
   "displayName": "Projectfile",
   "description": "Run Node Projects Locally With Ease",
-  "version": "0.0.214",
+  "version": "0.0.214211",
   "engines": {
     "vscode": "^1.48.0"
   },
@@ -41,6 +34,13 @@
         "language": "Projectfile",
         "scopeName": "source.Projectfile",
         "path": "./syntaxes/Projectfile.tmLanguage.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "turtles",
+        "label": "Turtles",
+        "path": "icons.json"
       }
     ]
   }
