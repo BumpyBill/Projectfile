@@ -47,7 +47,6 @@ if (!dir) {
         // CMD
         if (!!line[0] && line[0].type == "keyword" && line[0].text == "CMD") {
           if (!!line[1] && line[1].value) {
-            console.log(args.detached);
             const cmd = spawn(
               line[1].value.split(/ +/)[0],
               line[1].value
